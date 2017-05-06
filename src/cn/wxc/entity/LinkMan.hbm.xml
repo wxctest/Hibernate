@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.wxc.entity.LinkMan" table="t_linkman">
+		<id name="lkm_id" column="lkm_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="lkm_name" column="lkm_name"></property>
+		<property name="lkm_gender" column="lkm_gender"></property>
+		<property name="lkm_phone" column="lkm_phone"></property>
+		
+		<!-- 
+		表示联系人所属的客户
+		name：因为在LinMan.java中用customer表示Customer客户类，所以用customer
+		class：Customer实体类全路径
+		column：外键名称，要跟Customer.hbm.xml中的一致
+		 -->
+		<many-to-one name="customer" class="cn.wxc.entity.Customer" column="clid"></many-to-one>
+	</class>
+</hibernate-mapping>
+
