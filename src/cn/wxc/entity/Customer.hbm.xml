@@ -13,7 +13,8 @@
 		<property name="custPhone" column="custPhone"></property>
 		<property name="custMobile" column="custMobile"></property>
 
-		<set name="setLinkMan" cascade="save-update">
+		<!-- inverse属性：false不放弃维护， true放弃维护 -->
+		<set name="setLinkMan" cascade="save-update,delete" inverse="true">
 			<key column="clid"></key>
 			<one-to-many class="cn.wxc.entity.LinkMan" />
 		</set>

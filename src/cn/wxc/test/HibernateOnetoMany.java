@@ -12,7 +12,7 @@ import cn.wxc.utils.HbernateUtils;
 public class HibernateOnetoMany {
 
 	@Test
-	public void testAdd() {
+	public void testUpdate() {
 		SessionFactory sessionFactory = null;
 		Session session = null;
 		Transaction tx = null;
@@ -21,28 +21,17 @@ public class HibernateOnetoMany {
 			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 
-			// 添加一个客户，为这个客户添加一个联系人
-			Customer customer = new Customer();
-			customer.setCustName("myname");
-			customer.setCustLevel("vip");
-			customer.setCustSource("net");
-			customer.setCustPhone("110");
-			customer.setCustMobile("999");
+			// 把apple的联系人改到google去
+			// 根据 id查询客户对象
+			Customer google = session.get(Customer.class, 1);
+			// 根据id查询联系人
+			LinkMan apple = session.get(LinkMan.class, 2);
 
-			LinkMan linkMan = new LinkMan();
-			linkMan.setLkm_name("linkName");
-			linkMan.setLkm_gender("man");
-			linkMan.setLkm_phone("911");
-
-			// 在客户里表示所有联系人，在联系人里表示客户
-			// 建立客户和联系人对象关系
-			// 把联系人的对象放到客户对象的set集合里
-			customer.getSetLinkMan().add(linkMan);
-			// 把客户对象放到联系人里
-			linkMan.setCustomer(customer);
-			// 保存到数据库
-			session.save(customer);
-			session.save(linkMan);
+			// 设置持久态对象值
+			// 把联系人放到客户里，
+			google.getSetLinkMan().add(apple);
+			// 把客户放到联系人里
+			apple.setCustomer(google);
 
 			tx.commit();
 
