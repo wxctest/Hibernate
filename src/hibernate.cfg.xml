@@ -15,10 +15,13 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.current_session_context_class">thread</property>
-		
+
 		<!-- 把映射文件放到核心配置文件中 -->
-		<mapping resource="cn/wxc/entity/Customer.hbm.xml"/>
-		<mapping resource="cn/wxc/entity/LinkMan.hbm.xml"/>
+		<mapping resource="cn/wxc/entity/Customer.hbm.xml" />
+		<mapping resource="cn/wxc/entity/LinkMan.hbm.xml" />
+
+		<mapping resource="cn/wxc/manytomany/Role.hbm.xml" />
+		<mapping resource="cn/wxc/manytomany/User.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>
